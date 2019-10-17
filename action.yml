@@ -1,0 +1,5 @@
+name: 'shellcheck'
+description: 'Run shellcheck on every shell file in a repository'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
