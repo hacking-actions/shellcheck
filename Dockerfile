@@ -1,4 +1,4 @@
-FROM madhacking/shellcheck:20190807
+FROM madhacking/gentoo-testrunner:latest
 
 COPY entrypoint.sh /entrypoint.sh
 
