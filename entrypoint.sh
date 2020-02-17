@@ -17,7 +17,12 @@ cat << END
                                     \__ \ | | |  __/ | | (__| | | |  __/ (__|   < 
                                     |___/_| |_|\___|_|_|\___|_| |_|\___|\___|_|\_\\
  
-                           https://github.com/hacking-actions/shellcheck (c) 2019 Max Hacking 
+                        https://github.com/hacking-actions/shellcheck (c) 2019-2020 Max Hacking 
+------------------------------------------------------------------------------------------------------------------------
+GITHUB_ACTOR="${GITHUB_ACTOR}"
+GITHUB_REPOSITORY="${GITHUB_REPOSITORY}"
+GITHUB_REF="${GITHUB_REF}"
+INPUT_SHELLCHECK_OPTIONS="${INPUT_SHELLCHECK_OPTIONS}"
 ------------------------------------------------------------------------------------------------------------------------
 END
 
@@ -31,7 +36,8 @@ while IFS= read -r -d '' f
 do
     if [[ "$(mimetype -b "${f}")" == "application/x-shellscript" ]]; then
         echo "Checking ${f}"
-        shellcheck -s bash "${f}" || exitval=1
+        # shellcheck disable=SC2086
+        shellcheck ${INPUT_SHELLCHECK_OPTIONS} "${f}" || exitval=1
     fi
 done <   <(find . -type f ! -iname ".*" ! -path "./.*" -print0)
 

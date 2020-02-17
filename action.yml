@@ -1,5 +1,10 @@
 name: 'shellcheck'
 description: 'Run shellcheck on every shell file in a repository'
+inputs:
+  shellcheck_options:
+    description: 'Additional options to pass to shellcheck'
+    default: '-s bash'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
